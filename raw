@@ -1,0 +1,30 @@
+let body = document.getElementsByTagName('body')[0];
+if (body.outlined) {
+	body.querySelectorAll('*').forEach(e => e.style.outline = "none");
+	body.outlined = false;
+} else {
+	const tagProps = {
+		DIV: [2, 'double', '#03adfc'],
+		SPAN: [1, 'double', '#fcf803'],
+		H1: [1, 'dashed', '##1e229c'],
+		H2: [1, 'dashed', '##1e229c'],
+		H3: [1, 'dashed', '##1e229c'],
+		H4: [1, 'dashed', '##1e229c'],
+		A: [2, 'dotted', '#fc0362'],
+		INPUT: [2, 'groove', '#fcba03'],
+		P: [2, 'dashed', '#ffffff'],
+		UL: [2, 'ridge', '#874040'],
+		OL: [2, 'ridge', '#874040'],
+		LI: [2, 'ridge', '#874040'],
+		TABLE: [2, 'ridge', '#bd27e3'],
+		TD: [2, 'ridge', '#bd27e3'],
+		TH: [2, 'ridge', '#bd27e3'],
+		IMG: [2, 'double', '#ff0000']
+	};
+	const set = (el) => {
+		el.style.outline = tagProps[el.tagName] ? `${tagProps[el.tagName][0]}px ${tagProps[el.tagName][1]} ${tagProps[el.tagName][2]}` : '1px dashed #222';
+		el.title = `${el.tagName} ${el.id ? 'id=' + el.id : ''} ${el.className ? 'class=' +  el.className : ''}`;
+	};
+	body.querySelectorAll('*').forEach(el => set(el));
+	body.outlined = true;
+}
